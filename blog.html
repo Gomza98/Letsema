@@ -1,0 +1,1283 @@
+<!-- blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog - Letsema Kgothekgothe Farms</title>
+    <style>
+      	   /* Base Styles and Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary: #3a5a40;     /* Deep green */
+    --secondary: #588157;   /* Medium green */
+    --accent: #a3b18a;      /* Light green */
+    --light: #dad7cd;       /* Cream */
+    --dark: #344e41;        /* Dark green */
+    --white: #ffffff;
+    --gray: #f9f9f9;
+    --text-dark: #333333;
+    --text-light: #666666;
+    
+    /* Typography */
+    --main-font: 'Montserrat', sans-serif;
+    --heading-font: 'Montserrat', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-med: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--main-font);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary);
+    transition: var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ====================================
+   HEADER & NAVIGATION
+   ==================================== */
+header {
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    padding: var(--spacing-sm) 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 120px; /* Adjust this as necessary to fit your logo */
+    height: auto;
+	padding-left: 30px;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+/* Main Menu */
+.main-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu > li {
+    position: relative;
+    margin-left: var(--spacing-md);
+}
+
+.main-menu > li > a {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--dark);
+    font-weight: 500;
+    transition: var(--transition-fast);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.main-menu > li > a:hover {
+    color: var(--secondary);
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white);
+    min-width: 220px;
+    padding: var(--spacing-sm) 0;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-med);
+    z-index: 100;
+    list-style: none;
+}
+
+.main-menu > li:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--light);
+    color: var(--primary);
+    padding-left: calc(var(--spacing-md) + 5px);
+}
+
+
+/* ====================================
+   FOOTER
+   ==================================== */
+footer {
+    background-color: var(--dark);
+    color: var(--light);
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-content h3 {
+    color: var(--white);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.2rem;
+    position: relative;
+    padding-bottom: var(--spacing-xs);
+}
+
+.footer-content h3:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+.footer-about p {
+    color: var(--light);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-links a {
+    color: var(--light);
+    transition: all var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+    padding-left: 5px;
+}
+
+.footer-contact p {
+    color: var(--light);
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--light);
+}
+
+/* ====================================
+   ANIMATIONS
+   ==================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ====================================
+   RESPONSIVE STYLES
+   ==================================== */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .main-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: var(--spacing-md);
+        z-index: 1000;
+    }
+    
+    .main-menu.active {
+        display: flex;
+    }
+    
+    .main-menu > li {
+        margin: var(--spacing-xs) 0;
+    }
+    
+    .main-menu > li > a {
+        padding: var(--spacing-xs) 0;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding: 0 0 0 var(--spacing-md);
+        margin-top: var(--spacing-xs);
+        margin-bottom: var(--spacing-xs);
+        display: none;
+    }
+    
+    .dropdown-active .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-menu li a {
+        padding: var(--spacing-xs) 0;
+    }
+    
+    .dropdown-menu li a:hover {
+        background-color: transparent;
+        padding-left: var(--spacing-xs);
+    }
+    
+    .hero {
+        height: 500px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    :root {
+        --spacing-xl: 3rem;
+        --spacing-lg: 2rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-content h3:after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+/* Blog Page Styles */
+.blog-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/api/placeholder/1200/400');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.blog-hero h1 {
+    color: var(--white);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.blog-hero p {
+    color: var(--light);
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-container {
+    padding: var(--spacing-lg) 0;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.blog-card {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform var(--transition-med);
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.blog-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-med);
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.05);
+}
+
+.blog-content {
+    padding: var(--spacing-md);
+}
+
+.blog-category {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--dark);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.blog-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.3;
+}
+
+.blog-excerpt {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--light);
+    padding-top: var(--spacing-sm);
+}
+
+.blog-author {
+    display: flex;
+    align-items: center;
+}
+
+.blog-author img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.blog-date {
+    font-style: italic;
+}
+
+/* Filter and Search */
+.blog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: var(--light);
+    border-radius: var(--radius-md);
+}
+
+.filter-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: var(--white);
+    border: 1px solid var(--accent);
+    color: var(--dark);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    font-family: var(--main-font);
+}
+
+.search-box button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    background: var(--secondary);
+    border: none;
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+    color: white;
+    cursor: pointer;
+}
+
+/* Newsletter Section */
+.newsletter {
+    background-color: var(--light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.newsletter h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.newsletter p {
+    max-width: 600px;
+    margin: 0 auto var(--spacing-md);
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--accent);
+    border-top-left-radius: var(--radius-sm);
+    border-bottom-left-radius: var(--radius-sm);
+    font-family: var(--main-font);
+}
+
+.newsletter-form button {
+    padding: 0 1.5rem;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-top-right-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.newsletter-form button:hover {
+    background-color: var(--primary);
+}
+
+/* Weather Widget */
+.weather-widget {
+    background-color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: var(--spacing-lg);
+}
+
+.weather-widget h3 {
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+}
+
+.weather-icon {
+    margin-right: 10px;
+    color: var(--secondary);
+}
+
+.weather-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.weather-item {
+    flex: 1;
+    min-width: 150px;
+    padding: var(--spacing-sm);
+    background-color: var(--light);
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.weather-temp {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.weather-desc {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Featured Article */
+.featured-article {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-label {
+    background-color: var(--primary);
+    color: var(--white);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+
+.featured-image-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.featured-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-content {
+    padding: var(--spacing-lg);
+}
+
+.featured-title {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.featured-excerpt {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.read-more {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--secondary);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: background-color var(--transition-fast);
+}
+
+.read-more:hover {
+    background-color: var(--primary);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--spacing-lg);
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    color: var(--text-dark);
+    transition: all var(--transition-fast);
+}
+
+.pagination-btn:hover, .pagination-btn.active {
+    background-color: var(--secondary);
+    color: var(--white);
+    border-color: var(--secondary);
+}
+
+/* Loading Animation */
+.loading {
+    display: none;
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid var(--secondary);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .featured-image-container {
+        height: 300px;
+    }
+    
+    .blog-filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .search-box {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .featured-article {
+        flex-direction: column;
+    }
+    
+    .featured-image-container {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .featured-content {
+        padding: var(--spacing-md);
+    }
+    
+    .featured-title {
+        font-size: 1.5rem;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input {
+        border-radius: var(--radius-sm);
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-form button {
+        border-radius: var(--radius-sm);
+        padding: 0.75rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+   <!-- Header with Navigation -->
+<header>
+    <nav>
+        <div class="nav-container">
+            <!-- Logo Image -->
+            <a href="index.html" class="logo">
+                <img src="images/logo1.jpg" alt="Letsema Kgothekgothe Farms Logo">
+            </a>
+            <div class="mobile-toggle">☰</div>
+            <ul class="main-menu">
+                <li><a href="home.html">Home</a></li>
+                <li>
+                    <a href="about us.html">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a href= "about us.html">Farm History</a></li>
+                        <li><a href="about us.html">Meet the Team</a></li>
+                        <li><a href="about us.html">Our Philosophy</a></li>
+                    </ul>
+                </li>
+               <li>
+                    <a href="livestock.html">Livestock</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="livestock.html">Cattle</a></li>
+                        <li><a href="livestock.html">Sheep</a></li>
+                        <li><a href="livestock.html">Goats</a></li>
+                        <li><a href="livestock.html">Poultry</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="crops.html">Crop Farming</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="crops.html">Our Crops</a></li>
+                        <li><a href="crops.html">Farming Methods</a></li>
+                        <li><a href="crops.html">Seasonal Calendar</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<main>
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>Farming Insights from South Africa</h1>
+            <p>Explore the latest agricultural news, farming techniques, and sustainable practices tailored for South African farmers.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        
+
+        <!-- Featured Article -->
+        <section class="featured-article">
+            <div class="featured-image-container">
+                <span class="featured-label">Featured</span>
+                <img src="images/drought.jpg" alt="Sustainable farming practices in the Western Cape">
+            </div>
+            <div class="featured-content">
+                <h2 class="featured-title">Drought Resistant Farming: Lessons from the Western Cape</h2>
+                <p class="featured-excerpt">South African farmers are innovating with drought-resistant techniques that combine traditional knowledge with modern technology. Learn how farmers in the Western Cape have adapted to water scarcity while maintaining productivity.</p>
+                <a href="https://link.springer.com/article/10.1007/s10113-023-02091-6" class="read-more">Read Full Article</a>
+            </div>
+        </section>
+
+        <!-- Blog Filters -->
+        <section class="blog-filters">
+            <div class="filter-categories">
+                <button class="filter-btn active" data-category="all">All Articles</button>
+                <button class="filter-btn" data-category="livestock">Livestock</button>
+                <button class="filter-btn" data-category="crops">Crops</button>
+                <button class="filter-btn" data-category="sustainable">Sustainable Farming</button>
+                <button class="filter-btn" data-category="technology">Agritech</button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search articles...">
+                <button id="searchBtn">🔍</button>
+            </div>
+        </section>
+
+        <!-- Blog Articles Grid -->
+        <section class="blog-container">
+            <div class="blog-grid" id="blogGrid">
+                <!-- Article 1 -->
+                <article class="blog-card" data-category="livestock">
+                    <div class="blog-image">
+                        <img src="images/nguni.jpg" alt="Nguni Cattle">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Livestock</span>
+                        <h3 class="blog-title">The Rise of Nguni Cattle Farming in South Africa</h3>
+                        <p class="blog-excerpt">Indigenous Nguni cattle are gaining popularity among commercial farmers for their hardiness, disease resistance, and low maintenance requirements.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="/api/placeholder/100/100" alt="Author">
+                                <span>Sipho Mabaso</span>
+                            </div>
+                            <div class="blog-date">April 15, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card" data-category="crops">
+                    <div class="blog-image">
+                        <img src="images/maize1.jpg" alt="Maize Farming">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Crops</span>
+                        <h3 class="blog-title">Maximizing Maize Yields in Eastern Cape Conditions</h3>
+                        <p class="blog-excerpt">New drought-tolerant maize varieties are helping Eastern Cape farmers achieve better yields despite challenging climate conditions.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="/api/placeholder/100/100" alt="Author">
+                                <span>Nomsa Dlamini</span>
+                            </div>
+                            <div class="blog-date">April 10, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="blog-card" data-category="sustainable">
+                    <div class="blog-image">
+                        <img src="images/water.jpg" alt="Water Conservation">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Sustainable</span>
+                        <h3 class="blog-title">Water Conservation Techniques for South African Farms</h3>
+                        <p class="blog-excerpt">Innovative water harvesting and management systems are helping farmers in water-scarce regions optimize their water usage.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="/api/placeholder/100/100" alt="Author">
+                                <span>Thabo Nkosi</span>
+                            </div>
+                            <div class="blog-date">April 5, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="blog-card" data-category="technology">
+                    <div class="blog-image">
+                        <img src="images/drone.jpg" alt="Drone Technology">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Agritech</span>
+                        <h3 class="blog-title">Drone Technology Transforms Crop Monitoring in SA</h3>
+                        <p class="blog-excerpt">Affordable drone technology is helping small and medium farmers monitor crop health, optimize irrigation, and detect pests early.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="/api/placeholder/100/100" alt="Author">
+                                <span>Lerato Molefe</span>
+                            </div>
+                            <div class="blog-date">March 29, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="blog-card" data-category="livestock">
+                    <div class="blog-image">
+                        <img src="images/boergoat.jpg" alt="Boer Goats">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Livestock</span>
+                        <h3 class="blog-title">Boer Goat Farming: A Profitable Venture in Karoo Region</h3>
+                        <p class="blog-excerpt">Learn why South African Boer goats are becoming a preferred livestock option for farmers in arid regions looking for resilient income sources.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="/api/placeholder/100/100" alt="Author">
+                                <span>Pieter van der Merwe</span>
+                            </div>
+                            <div class="blog-date">March 22, 2025</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="blog-card" data-category="crops">
+                    <div class="blog-image">
+                        <img src="images/rooibos.jpg" alt="Rooibos Tea">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Crops</span>
+                        <h3 class="blog-title">Rooibos Tea Farming: Success Stories from Cederberg</h3>
+                        <p class="blog-excerpt">With international demand for rooibos tea growing, Cederberg farmers share their sustainable cultivation practices and export strategies.</p>
+                        <div class="blog-meta">
+                            <div class="blog-author">
+                                <img src="/api/placeholder/100/100" alt="Author">
+                                <span>Anele Botha</span>
+                            </div>
+                            <div class="blog-date">March 15, 2025</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading" id="loadingSpinner">
+                <div class="loading-spinner"></div>
+                <p>Loading more articles...</p>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="pagination-btn active">1</a>
+                <a href="#" class="pagination-btn">2</a>
+                <a href="#" class="pagination-btn">3</a>
+                <a href="#" class="pagination-btn">→</a>
+            </div>
+        </section>
+
+      
+    </div>
+</main>
+   
+
+   <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Letsema Kgothekgothe Farms</h3>
+                    <p>Sustainable farming with traditional values and modern techniques</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about us.html">About Us</a></li>
+                        <li><a href="livestock.html">Livestock</a></li>
+                        <li><a href="crops.html">Crops</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>123 Farm Road, Countryside</p>
+                    <p>Phone: (123) 456-7890</p>
+                    <p>Email: info@letsemafarms.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Letsema Kgothekgothe Farms. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu toggle and dropdowns -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const mainMenu = document.querySelector('.main-menu');
+            
+            mobileToggle.addEventListener('click', function() {
+                mainMenu.classList.toggle('active');
+            });
+            
+            // Mobile dropdown toggle
+            if (window.innerWidth <= 768) {
+                const menuItems = document.querySelectorAll('.main-menu > li');
+                
+                menuItems.forEach(function(item) {
+                    // Check if the item has a dropdown
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        // Add click event to toggle dropdown
+                        item.querySelector('a').addEventListener('click', function(e) {
+                            e.preventDefault();
+                            item.classList.toggle('dropdown-active');
+                        });
+                    }
+                });
+            }
+        });
+		
+		
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const category = this.getAttribute('data-category');
+            
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+            
+            // Simulate loading delay for filter
+            setTimeout(() => {
+                blogCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Hide loading spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }, 500);
+        });
+    });
+    
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase();
+        
+        if (searchTerm.length < 2) return;
+        
+        // Show loading spinner
+        document.getElementById('loadingSpinner').style.display = 'block';
+        
+        // Remove active class from all filter buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Simulate search delay
+        setTimeout(() => {
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Hide loading spinner
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }, 500);
+    }
+    
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+        }
+    });
+    
+    // Newsletter subscription
+    const newsletterForm = document.getElementById('newsletterForm');
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        
+        // Here you would typically send this to your backend
+        alert(`Thank you for subscribing with ${email}! You will now receive our farming newsletter.`);
+        this.reset();
+    });
+    
+    // Pagination
+    const paginationBtns = document.querySelectorAll('.pagination-btn');
+    paginationBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all pagination buttons
+            paginationBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Show loading spinner
+            document.getElementById('loadingSpinner').style.display = 'block';
+            
+            // Scroll to top of blog section
+            document.querySelector('.blog-container').scrollIntoView({ behavior: 'smooth' });
+            
+            // Simulate page loading delay
+            setTimeout(() => {
+                // In a real app, this would load new articles
+                // For now just hide the spinner
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }, 800);
+        });
+    });
+    
+   
+        
+      
+    // Simulate loading farm data news feed (real-time updates)
+    let marketPrices = [
+        { crop: 'Maize', price: 'R3,250/ton', trend: '↑' },
+        { crop: 'Wheat', price: 'R4,800/ton', trend: '↓' },
+        { crop: 'Soybeans', price: 'R7,400/ton', trend: '↑' },
+        { crop: 'Sunflower', price: 'R8,100/ton', trend: '→' }
+    ];
+});
+    </script>
+</body>
+</html>
